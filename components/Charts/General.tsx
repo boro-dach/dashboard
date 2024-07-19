@@ -39,7 +39,7 @@ const chartConfig = {
 
 export function General() {
   return (
-      <Card className="shadow-none border-none">
+      <Card>
         <CardHeader>
           <CardTitle>Area Chart - Stacked</CardTitle>
           <CardDescription>
