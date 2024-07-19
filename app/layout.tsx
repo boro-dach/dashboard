@@ -3,6 +3,7 @@ import Sidebar from "@/components/Sidebar";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import { ThemeProvider } from "@/components/ThemePovider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} flex items-start justify-between`}>
+        <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
         <Sidebar />
         <main className="grid w-full h-full">
           <Header />
@@ -26,6 +33,7 @@ export default function RootLayout({
             {children}
           </div>
         </main>
+        </ThemeProvider>
       </body>
     </html>
   );
