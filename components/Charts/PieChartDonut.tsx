@@ -21,8 +21,8 @@ import {
 const chartData = [
   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
   { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
+  { browser: "firefox", visitors: 475, fill: "var(--color-firefox)" },
+  { browser: "edge", visitors: 121, fill: "var(--color-edge)" },
   { browser: "other", visitors: 190, fill: "var(--color-other)" },
 ]
 
@@ -51,6 +51,18 @@ const chartConfig = {
     color: "hsl(var(--chart-5))",
   },
 } satisfies ChartConfig
+
+let maxValue = Math.max.apply(null, chartData.map(function (o) 
+  { return o.visitors; }
+));
+
+const mostVisitors = chartData.reduce((max, current) => {
+  return current.visitors > max.visitors ? current : max;
+}, chartData[0]);
+
+function firstCapital (word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}
 
 export function PieChartDonut() {
   const totalVisitors = React.useMemo(() => {
@@ -115,7 +127,7 @@ export function PieChartDonut() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
-          287 users prefer Firefox <GlobeIcon className="w-4 h-4"/>
+          {`${maxValue} users prefer ${firstCapital(mostVisitors.browser)}`} <GlobeIcon className="w-4 h-4"/>
         </div>
         <div className="leading-none text-muted-foreground">
           Showing total visitors for the last 6 months

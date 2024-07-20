@@ -1,6 +1,6 @@
 "use client"
 
-import { TrendingUp } from "lucide-react"
+import { TrendingDown, TrendingUp } from "lucide-react"
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 
 import {
@@ -22,9 +22,14 @@ const chartData = [
   { month: "February", desktop: 305, mobile: 200 },
   { month: "March", desktop: 237, mobile: 120 },
   { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "May", desktop: 201, mobile: 109 },
+  { month: "June", desktop: 289, mobile: 0 },
 ]
+
+const penultimateMonth = chartData[chartData.length - 2].desktop + chartData[chartData.length - 2].mobile
+const lastMonth = chartData[chartData.length - 1].desktop + chartData[chartData.length - 1].mobile
+
+const trendDifference = Math.round(((lastMonth - penultimateMonth) / penultimateMonth) * 100)
 
 const chartConfig = {
   desktop: {
@@ -84,7 +89,7 @@ export function MultipleLineChart() {
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
             <div className="flex items-center gap-2 font-medium leading-none">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+              {`Trending ${trendDifference > 0 ? 'up' : 'down'} by ${trendDifference > 0 ? trendDifference : trendDifference * -1}% this month`} {trendDifference > 0 ? (<TrendingUp className="h-4 w-4" />) : (<TrendingDown className="h-4 w-4" />)}
             </div>
             <div className="flex items-center gap-2 leading-none text-muted-foreground">
               Showing total visitors for the last 6 months

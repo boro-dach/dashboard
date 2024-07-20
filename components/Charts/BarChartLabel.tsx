@@ -26,6 +26,10 @@ const chartData = [
   { month: "June", desktop: 214 },
 ]
 
+const mostVisitors = chartData.reduce((max, current) => {
+  return current.desktop > max.desktop ? current : max;
+}, chartData[0]);
+
 const chartConfig = {
   desktop: {
     label: "Desktop",
@@ -74,7 +78,7 @@ export function BarChartLabel() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 font-medium leading-none">
-          Highest value at February <TrophyIcon className="w-4 h-4"/>
+          {`Highest value at ${mostVisitors.month}`}<TrophyIcon className="w-4 h-4"/>
         </div>
         <div className="leading-none text-muted-foreground">
           Showing total visitors for the last 6 months
