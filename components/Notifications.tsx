@@ -6,7 +6,12 @@ import { useState } from "react";
 
 export default function Notifications() {
 
-    const [notifications, useNotifications] = useState <any> ([
+    const [notifications, setNotifications] = useState <any> ([
+        {
+            text: "One more notification",
+            date: "07-20-2024",
+            read: true
+        },
         {
             text: "Notification",
             date: "07-17-2024",
@@ -15,18 +20,18 @@ export default function Notifications() {
         {
             text: "Another notification",
             date: "07-17-2024",
-            read: false
+            read: true
         }
     ])
 
   return (
-    <div className="flex items-center justify-end gap-2">
+    <div className="flex items-center justify-end gap-2 z-50">
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button className="relative" variant={"outline"} size={"icon"}>
                         <div 
                             className={`absolute -top-2 -right-1 h-3 w-3 rounded-full my-1 
-                            ${notifications.find((x: any) => x.read === false) ? 'bg-red-500' : 'bg-green-500'}`}>
+                            ${notifications.find((x: any) => x.read === false) ? 'bg-red-500' : ''}`}>
                         </div>
                         <Bell className="h-4 w-4"/>
                     </Button>
