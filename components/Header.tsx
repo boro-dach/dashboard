@@ -1,16 +1,5 @@
 "use client"
-
-import { Bell, Icon } from "lucide-react"
 import { CommandDemo } from "./Command"
-import { Button } from "./ui/button"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
-import { useState } from "react"
-import { ModeToggle } from "./ModeToggle"
 import Notifications from "./Notifications"
   
 
